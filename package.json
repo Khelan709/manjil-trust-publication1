@@ -1,0 +1,20 @@
+{
+  "name": "manjil-publication",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Manjil Publication — open access scholarly publishing website (React + Express + MongoDB)",
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix backend start",
+    "test": "npm --prefix backend test && npm --prefix frontend test",
+    "lint": "npm --prefix frontend run lint",
+    "create-admin": "npm --prefix backend run create-admin --",
+    "postinstall": "npm --prefix frontend install && npm --prefix backend install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

@@ -1,0 +1,13 @@
+# Local MongoDB for development:   docker compose up -d
+services:
+  mongo:
+    image: mongo:7
+    container_name: manjil-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - manjil_mongo_data:/data/db
+
+volumes:
+  manjil_mongo_data:

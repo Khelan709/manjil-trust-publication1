@@ -1,0 +1,28 @@
+# Render Blueprint: one web service that serves the website, the API and the admin panel.
+# Deploy: Render dashboard → New → Blueprint → pick this repository. See docs/DEPLOYMENT.md.
+services:
+  - type: web
+    name: manjil-publication
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NPM_CONFIG_INCLUDE   # build tools (Vite, Tailwind) are devDependencies
+        value: dev
+      - key: SERVE_FRONTEND
+        value: "true"
+      - key: TRUST_PROXY
+        value: "1"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI          # paste your MongoDB Atlas connection string
+        sync: false
+      - key: ADMIN_EMAIL          # first admin account (created only if no admin exists yet)
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
